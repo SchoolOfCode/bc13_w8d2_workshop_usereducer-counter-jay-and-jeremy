@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./input.css";
 
-function Input({ addItem }) {
+function Input({ dispatch }) {
   const [userInput, setUserInput] = useState("");
 
   function handleChange(e) {
@@ -16,7 +16,8 @@ function Input({ addItem }) {
       </label>
       <button
         onClick={() => {
-          addItem(userInput);
+         
+          dispatch({type: "ADD"})
         }}
       >
         Add to bootcamper list
