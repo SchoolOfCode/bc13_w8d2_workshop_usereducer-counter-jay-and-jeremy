@@ -8,27 +8,26 @@ import { useReducer } from "react";
 // - Refactor the `names` state to use `useReducer` instead when adding names to the list.
 
 function reducer(state, action) {
+  console.log("REDUCER state: ", state);
+  console.log("REDUCER action: ", action);
   switch(action.type) {
     case "UPDATE":
-      return state.input = action.payload
+      return { ...state, input: action.payload };
     case "ADD":
-    return ({...state, ...state.name, state.input});
+    return ({name: [...state], input: state.input});
+    default:
+      return state;
   }
 }
 
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {name: [], input: ""})
-  
-  function addName(addedName) {
-    const updatedNames = [...names, addedName];
-    setNames(updatedNames);
-  }
 
   return (
     <main>
-      <Input update={dispatch} onChange={dispatch({type: "UPDATE", payload: e.target.value})} />
-      <List items={state}   />
+      <Input state={state} dispatch={(e) => dispatch({ type: "UPDATE", payload: e.target.value })} />
+      <List items={state.name} />
     </main>
   );
 }

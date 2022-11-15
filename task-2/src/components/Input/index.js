@@ -1,22 +1,14 @@
 import { useState } from "react";
 import "./input.css";
 
-function Input({ dispatch }) {
-  const [userInput, setUserInput] = useState("");
-
-  function handleChange(e) {
-    setUserInput(e.target.value);
-    console.log(userInput);
-  }
-
+function Input({ dispatch, state }) {
   return (
     <div id="input">
       <label>
-        Bootcamper name: <input value={userInput} onChange={handleChange} />
+        Bootcamper name: <input value={state.input} onChange={dispatch} />
       </label>
       <button
         onClick={() => {
-         
           dispatch({type: "ADD"})
         }}
       >

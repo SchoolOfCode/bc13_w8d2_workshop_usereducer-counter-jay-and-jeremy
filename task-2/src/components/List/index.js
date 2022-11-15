@@ -1,4 +1,5 @@
 function List({ items }) {
+  console.log("List: ", items);
   return (
     <ol>
       {items.map((item) => (
