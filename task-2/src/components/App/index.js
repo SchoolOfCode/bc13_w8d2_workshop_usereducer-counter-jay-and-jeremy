@@ -7,19 +7,18 @@ import { useReducer } from "react";
 // - `cd` to the `task-2` folder.
 // - Refactor the `names` state to use `useReducer` instead when adding names to the list.
 
-function reducer(names, action) {
+function reducer(state, action) {
   switch(action.type) {
+    case "UPDATE":
+      return state.input = action.payload
     case "ADD":
-    return {[...state.name], state.input}
-    
-
+    return ({...state, ...state.name, state.input});
   }
 }
 
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {name: [], input: ""})
-  
   
   function addName(addedName) {
     const updatedNames = [...names, addedName];
