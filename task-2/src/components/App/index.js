@@ -14,7 +14,8 @@ function reducer(state, action) {
     case "UPDATE":
       return { ...state, input: action.payload };
     case "ADD":
-    return ({name: [...state], input: state.input});
+    
+    return ({name: [...state.name, state.input]});
     default:
       return state;
   }
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <main>
-      <Input state={state} dispatch={(e) => dispatch({ type: "UPDATE", payload: e.target.value })} />
+      <Input click={(e) => dispatch({type: "ADD"})} dispatch={(e) => dispatch({ type: "UPDATE", payload: e.target.value })} />
       <List items={state.name} />
     </main>
   );
