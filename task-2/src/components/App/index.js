@@ -14,7 +14,7 @@ function reducer(state, action) {
     case "UPDATE":
       return { ...state, input: action.payload };
     case "ADD":
-    return ({name: [...state], input: state.input});
+    return ({...state, name: [...state.name, state.input]});
     default:
       return state;
   }
@@ -23,10 +23,12 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {name: [], input: ""})
-
+  console.log("App component", state.name)
   return (
     <main>
-      <Input state={state} dispatch={(e) => dispatch({ type: "UPDATE", payload: e.target.value })} />
+      <Input state={state} 
+      dispatch1={(e) => dispatch({ type: "UPDATE", payload: e.target.value })}
+      dispatch2={(e) => dispatch({type: "ADD"})} />
       <List items={state.name} />
     </main>
   );

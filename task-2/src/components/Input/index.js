@@ -1,16 +1,15 @@
-import { useState } from "react";
+
 import "./input.css";
 
-function Input({ dispatch, state }) {
+function Input({ dispatch1, dispatch2, state }) {
   return (
     <div id="input">
       <label>
-        Bootcamper name: <input value={state.input} onChange={dispatch} />
+        Bootcamper name: <input value={state.input} onChange={dispatch1} />
+        
       </label>
       <button
-        onClick={() => {
-          dispatch({type: "ADD"})
-        }}
+        onClick={dispatch2}
       >
         Add to bootcamper list
       </button>
